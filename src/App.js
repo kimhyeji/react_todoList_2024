@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, NavLink, useLocation } from "react-router-dom"
 
 import MainPage from "./compoents/pages/MainPage";
 import WritePage from "./compoents/pages/WritePage";
+import { NoticeSnackbar } from "./compoents/NoticeSnackbar";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,8 @@ function App() {
           </div>
         </Toolbar>
       </AppBar>
+
+      <NoticeSnackbar />
 
       <Routes>
         <Route path="/main" element={<MainPage />} />
