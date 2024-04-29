@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 웹 폰트 적용 */
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -16,6 +17,7 @@ body,
     height: 100%;
 }
 
+
 /* 프리텐다드 폰트 적용 */
 html > body,
 html > body input,
@@ -24,4 +26,9 @@ html > body textarea,
 html > body pre,
 html > body button {
     font-family: "Pretendard-Regular";
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
 }
