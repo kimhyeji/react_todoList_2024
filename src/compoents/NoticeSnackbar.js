@@ -1,4 +1,4 @@
-import {atom, useRecoilState} from "recoil";
+import { atom, useRecoilState } from "recoil";
 
 const Alert = React.forwardRef((props, ref) => {
     return (
