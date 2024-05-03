@@ -2,19 +2,20 @@ import { useRef, useState, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { dateToStr } from "./util";
 import { todosAtom, lastTodoIdAtom } from "./atoms";
+import { produce } from "immer";
 
 export function useTodosState() {
     const [todos, setTodos] = useRecoilState(todosAtom);
     const [lastTodoId, setLastTodoId] = useRecoilState(lastTodoIdAtom);
     const lastTodoIdRef = useRef(lastTodoId);
   
-    const addTodo = (newContent) => {
+    const addTodo = (regDate, newContent) => {
       const id = ++lastTodoIdRef.current;
       setLastTodoId(id);
   
       const newTodo = {
         id,
-        regDate: dateToStr(new Date()),
+        regDate: dateToStr(new Date(regDate)),
         content: newContent,
       }
   
@@ -58,11 +59,21 @@ export function useTodosState() {
     const findTodoById = (id) => {
       const index = findTodoIndexById(id);
   
-      if ( index == -1 ) {
-        return null;
-      }
+      if ( index == -1 ) return null;
   
       return todos[index];
+    }
+
+    const toggleTodoCompletedById = (id) => {
+      const index = findTodoIndexById(id);
+
+      if ( index == -1 ) return;
+
+      setTodos(
+        produce(todos, (draft) => {
+          draft[index].completed = !draft[index].completed;
+        })
+      );
     }
   
     return {
@@ -72,7 +83,8 @@ export function useTodosState() {
       modifyTodo,
       removeTodoById,
       findTodoById,
-      modifyTodoById
+      modifyTodoById,
+      toggleTodoCompletedById
     }
 }
 
