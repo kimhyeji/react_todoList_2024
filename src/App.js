@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, NavLink, useLocation } from "react-router-dom"
 
 import MainPage from "./compoents/pages/MainPage";
 import WritePage from "./compoents/pages/WritePage";
+import EditPage from "./compoents/pages/EditPage";
 import { NoticeSnackbar } from "./compoents/NoticeSnackbar";
 
 function App() {
@@ -16,11 +17,11 @@ function App() {
           <div className="font-bold select-none">TODO</div>
           <div className="flex-1 flex justify-end">
             {location.pathname != "/write" && (
-              <NavLink to="/write">글작성</NavLink>
+              <NavLink to="/write">할 일 추가</NavLink>
             )}
 
             {location.pathname == "/write" && (
-              <NavLink to="/main">메인</NavLink>
+              <NavLink to="/main">리스트</NavLink>
             )}
           </div>
         </Toolbar>
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/main" element={<MainPage />} />
         <Route path="/write" element={<WritePage />} />
+        <Route path="/edit/:id" element={<EditPage />} />
         <Route path="/*" element={<Navigate to ="/main" />} />
       </Routes>
     </>
