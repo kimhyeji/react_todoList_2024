@@ -39,6 +39,8 @@ export default function TodoEditPage() {
     noticeSnackbarState.open(`${todo.id}번 할 일이 수정되었습니다.`);
   };
 
+  const regDateForInput = todo.regDate.substr(0, 16).replace(" ", "T");
+
   return (
     <>
       <form className="flex-1 flex p-10 flex-col gap-7" onSubmit={onSubmit}>
@@ -47,6 +49,7 @@ export default function TodoEditPage() {
           focused
           type="datetime-local"
           name="regDate"
+          defaultValue={regDateForInput}
           />
 
         <TextField
@@ -56,6 +59,7 @@ export default function TodoEditPage() {
           className="flex-1 flex"
           InputProps={{ className: "flex-1 flex-col"}}
           inputProps={{ className: "flex-1 bg-red-500"}}
+          defaultValue={todo.content}
         />
 
         <Button type="submit" variant="contained">
