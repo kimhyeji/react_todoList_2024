@@ -7,7 +7,7 @@ export default function TodoListItem({todo, index, openDrawer, onCompletedBtnCli
         <li key={todo.id} className='mt-10'>
           <div className='flex gap-3'>
             <Chip label={todo.id} variant="outlined" />
-            <Chip label={todo.regDate} color="primary" variant="outlined" />
+            <Chip label={todo.performDate} color="primary" variant="outlined" />
           </div>
           <div className='mt-4 shadow rounded-[10px] flex'>
             <Button

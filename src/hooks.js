@@ -9,14 +9,16 @@ export function useTodosState() {
     const [lastTodoId, setLastTodoId] = useRecoilState(lastTodoIdAtom);
     const lastTodoIdRef = useRef(lastTodoId);
   
-    const addTodo = (regDate, newContent) => {
+    const addTodo = (performDate, newContent) => {
       const id = ++lastTodoIdRef.current;
       setLastTodoId(id);
   
       const newTodo = {
         id,
-        regDate: dateToStr(new Date(regDate)),
+        regDate: dateToStr(new Date()),
+        performDate: dateToStr(new Date(performDate)),
         content: newContent,
+        completed: false,
       }
   
       setTodos((todos) => [newTodo, ...todos]);
@@ -24,23 +26,23 @@ export function useTodosState() {
       return id;
     }
   
-    const modifyTodo = (index, regDate, newContent) => {
+    const modifyTodo = (index, performDate, newContent) => {
       const newTodos = produce(todos, (draft) => {
-        draft[index].regDate = dateToStr(new Date(regDate));
+        draft[index].performDate = dateToStr(new Date(performDate));
         draft[index].content = newContent;
       });
       
       setTodos(newTodos);
     }
   
-    const modifyTodoById = (id, regDate, newContent) => {
+    const modifyTodoById = (id, performDate, newContent) => {
       const index = findTodoIndexById(id);
   
       if ( index == -1 ) {
         return;
       }
   
-      modifyTodo(index, regDate, newContent);
+      modifyTodo(index, performDate, newContent);
     }
   
     const removeTodo = (index) => {
