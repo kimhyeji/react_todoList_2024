@@ -35,7 +35,7 @@ export default function WritePage() {
 
   return (
     <>
-      <form className="flex-1 flex p-10 flex-col gap-7" onSubmit={onSubmit}>
+      <form className="flex-1 flex p-8 flex-col gap-7 sm:p-10" onSubmit={onSubmit}>
         <TextField
           label="날짜 입력"
           focused
